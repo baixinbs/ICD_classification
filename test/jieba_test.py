@@ -21,20 +21,20 @@ def loadStopWords():
 msg = "他来到上海交通大学"
 print(cutWords(msg, loadStopWords()))
 #########################################################3
-# navie bayes classifier
-def nbClassifier(trainData, testData, trainLabel, testLabel):
-    vectorizer = CountVectorizer(binary=True)
-    fea_train = vectorizer.fit_transform(trainData)
-    fea_test = vectorizer.transform(testData);
-    #     tv=TfidfVectorizer()#该类会统计每个词语的tf-idf权值
-    #     fea_train = tv.fit_transform(trainData)    #return feature vector 'fea_train' [n_samples,n_features]
-    #     fea_test = tv.transform(testData);
-    print('Size of fea_train:' + repr(fea_train.shape))
-    print('Size of fea_test:' + repr(fea_test.shape))
-    print(fea_train.nnz)
-    print(fea_test.nnz)
-
-    clf = MultinomialNB(alpha=0.01)
-    clf.fit(fea_train, np.array(trainLabel))
-    pred = clf.predict(fea_test)
-    totalScore(pred, testData, testLabel)
+# # navie bayes classifier
+# def nbClassifier(trainData, testData, trainLabel, testLabel):
+#     vectorizer = CountVectorizer(binary=True)
+#     fea_train = vectorizer.fit_transform(trainData)
+#     fea_test = vectorizer.transform(testData);
+#     #     tv=TfidfVectorizer()#该类会统计每个词语的tf-idf权值
+#     #     fea_train = tv.fit_transform(trainData)    #return feature vector 'fea_train' [n_samples,n_features]
+#     #     fea_test = tv.transform(testData);
+#     print('Size of fea_train:' + repr(fea_train.shape))
+#     print('Size of fea_test:' + repr(fea_test.shape))
+#     print(fea_train.nnz)
+#     print(fea_test.nnz)
+#
+#     clf = MultinomialNB(alpha=0.01)
+#     clf.fit(fea_train, np.array(trainLabel))
+#     pred = clf.predict(fea_test)
+#     totalScore(pred, testData, testLabel)
