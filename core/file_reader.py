@@ -49,6 +49,11 @@ class FileReader(object):
         #         # print(df.info())
         return df
 
-if __name__ == "main":
-    m_reader = FileReader()
+if __name__ == "__main__":
+    excel_file_6600 = "E:\\ICD_classification\\data\\6600.xlsx"
+    pkl_file_6600 = "E:\\ICD_classification\\pickle\\6600_pkl"
+    excel_file_cyxj = "E:\\ICD_classification\\data\\cyxj.xls"
+    pkl_file_cyxj = "E:\\ICD_classification\\pickle\\cyxj_pkl"
+    m_reader = FileReader(excel_file_6600,pkl_file_6600,excel_file_cyxj,pkl_file_cyxj)
     df = m_reader.get_dataframe()
+    print('ending')
