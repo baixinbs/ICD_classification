@@ -7,11 +7,13 @@ import pandas as pd
 import os
 import pickle
 
-filepath_stopwords = 'E:\\ICD_classification\\stopwords\\stop_words.txt'
-excel_file_6600 = "E:\\ICD_classification\\data\\6600.xlsx"
-pkl_file_6600 = "E:\\ICD_classification\\pickle\\6600_pkl"
-excel_file_cyxj = "E:\\ICD_classification\\data\\cyxj.xls"
-pkl_file_cyxj = "E:\\ICD_classification\\pickle\\cyxj_pkl"
+data_dir = "E:\\ICD_classification\\"
+
+filepath_stopwords = data_dir + 'stopwords\\stop_words.txt'
+excel_file_6600 = data_dir + 'data\\6600.xlsx'
+pkl_file_6600 = data_dir + 'pickle\\6600_pkl'
+excel_file_cyxj = data_dir + 'data\\cyxj.xls'
+pkl_file_cyxj = data_dir + 'pickle\\cyxj_pkl'
 pd.set_option('display.max_columns', None)
 
 def remove_stopwords():
@@ -29,7 +31,7 @@ def remove_stopwords():
     # print(df.loc[0, 'stopwords_removed'])
     return df
 
-pkl_file_df_stopwords_removed = "E:\\ICD_classification\\pickle\\df_stopwords_removed_pkl"
+pkl_file_df_stopwords_removed = data_dir + 'pickle\\df_stopwords_removed_pkl'
 if not os.path.exists(pkl_file_df_stopwords_removed):
     with open(pkl_file_df_stopwords_removed, 'wb') as pklfile:
         df = remove_stopwords()
