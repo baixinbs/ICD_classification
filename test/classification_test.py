@@ -61,7 +61,8 @@ print(m_count.toarray().shape)
 print(m_tfidf.toarray())
 print(m_tfidf.toarray().shape)
 
-x = m_tfidf
-y = df['icd编码'].values
+# x = m_tfidf
+# y = df['icd编码'].values
+
 
 print("pause")
