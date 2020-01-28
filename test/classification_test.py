@@ -7,7 +7,6 @@ import pandas as pd
 import os
 import pickle
 
-test_conflict = "conflict_2"
 data_dir = "E:\\ICD_classification\\"
 
 filepath_stopwords = data_dir + 'stopwords\\stop_words.txt'
