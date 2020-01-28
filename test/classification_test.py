@@ -2,10 +2,16 @@ from core.file_reader import FileReader
 from core.stop_words_manager import StopWordsManager
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.feature_extraction.text import TfidfTransformer
-import jieba
+from sklearn.model_selection import train_test_split
+
+from sklearn.naive_bayes import MultinomialNB
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.svm import SVC
+
 import pandas as pd
 import os
 import pickle
+import numpy as np
 
 data_dir = "E:\\ICD_classification\\"
 
@@ -46,23 +52,32 @@ text_list = [' '.join(x) for x in text_list]
 
 m_max_features = 200
 vectorizer = CountVectorizer(token_pattern=u'(?u)\w+',max_features=m_max_features)
+# vectorizer = CountVectorizer(token_pattern=u'(?u)\w+')
 m_count = vectorizer.fit_transform(text_list)
 
 transformer = TfidfTransformer()
 m_tfidf = transformer.fit_transform(m_count)
 
-print(vectorizer.vocabulary_)
-print(len(vectorizer.vocabulary_))
-names = vectorizer.get_feature_names()
-print(names)
-print(len(names))
-print(m_count.toarray())
-print(m_count.toarray().shape)
-print(m_tfidf.toarray())
-print(m_tfidf.toarray().shape)
+# print(vectorizer.vocabulary_)
+# print(len(vectorizer.vocabulary_))
+# names = vectorizer.get_feature_names()
+# print(names)
+# print(len(names))
+# print(m_count.toarray())
+# print(m_count.toarray().shape)
+# print(m_tfidf.toarray())
+# print(m_tfidf.toarray().shape)
 
-# x = m_tfidf
-# y = df['icd编码'].values
+x = m_tfidf
+y = df['出院主要诊断编码'].tolist()
+y = np.array([int(i[-1:]) for i in y])
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.3)
 
+# modelnew = MultinomialNB(alpha = 0.1)
+# modelnew = DecisionTreeClassifier()
+modelnew = SVC()
 
+modelnew.fit(x_train, y_train)
+scorenew = modelnew.score(x_test, y_test)
+print(scorenew)
 print("pause")
