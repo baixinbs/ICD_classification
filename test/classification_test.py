@@ -46,17 +46,22 @@ text_list = [' '.join(x) for x in text_list]
 
 m_max_features = 200
 vectorizer = CountVectorizer(token_pattern=u'(?u)\w+',max_features=m_max_features)
-count0 = vectorizer.fit_transform(text_list)
+m_count = vectorizer.fit_transform(text_list)
 
 transformer = TfidfTransformer()
-tfidf = transformer.fit_transform(count0)
+m_tfidf = transformer.fit_transform(m_count)
 
 print(vectorizer.vocabulary_)
 print(len(vectorizer.vocabulary_))
 names = vectorizer.get_feature_names()
 print(names)
 print(len(names))
-print(count0.toarray())
-print(count0.toarray().shape)
+print(m_count.toarray())
+print(m_count.toarray().shape)
+print(m_tfidf.toarray())
+print(m_tfidf.toarray().shape)
+
+x = m_tfidf
+y = df['icd编码'].values
 
 print("pause")
