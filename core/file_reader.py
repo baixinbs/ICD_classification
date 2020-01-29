@@ -17,7 +17,7 @@ class FileReader(object):
 
     def load_6600(self):
         if not os.path.exists(self.pkl_file_6600):
-            with open(self.pkl_file_cyxj, 'wb') as pklfile:
+            with open(self.pkl_file_6600, 'wb') as pklfile:
                 df = pd.read_excel(self.excel_file_6600, dtype=str)
                 pickle.dump(df, pklfile)
         else:
@@ -37,7 +37,7 @@ class FileReader(object):
 
     def get_dataframe(self):
         df6600 = self.load_6600()
-        df6600 = df6600[['病案号','icd编码']]
+        df6600 = df6600[['病案号','出院主要诊断编码']]
         # print(df6600.head())
 
         dfcyxj = self.load_cyxj()
