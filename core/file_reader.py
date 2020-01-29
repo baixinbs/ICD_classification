@@ -2,6 +2,7 @@ import pandas as pd
 import pickle
 import os
 
+#实例化对象
 class FileReader(object):
     def __init__(self,
                  excel_file_6600 = "E:\\ICD_classification\\data\\6600.xlsx",
